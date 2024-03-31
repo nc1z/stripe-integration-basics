@@ -2,7 +2,7 @@ import { serve } from "@hono/node-server"
 import { Hono } from "hono"
 import "dotenv/config"
 import { PORT } from "./constants"
-import api from "./controllers/api/stripe"
+import api from "./controllers/api/api"
 
 const app = new Hono()
 
