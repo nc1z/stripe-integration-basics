@@ -1,6 +1,8 @@
 import { serve } from "@hono/node-server"
 import { Hono } from "hono"
 import "dotenv/config"
+import { PORT } from "./constants"
+import api from "./controllers/api/stripe"
 
 const app = new Hono()
 
@@ -8,14 +10,13 @@ app.get("/", (c) => {
     return c.text("Hello world!")
 })
 
-app.post("/", (c) => {
-    return c.text("POST request received!")
-})
+app.route("/api", api)
 
-const port = 3000
-console.log(`Server is running on port ${port}`)
+console.log(`Server is running on port ${PORT}`)
 
 serve({
     fetch: app.fetch,
-    port,
+    port: PORT,
 })
+
+export default app

@@ -1,15 +1,17 @@
 {
-  "scripts": {
-    "dev": "tsx watch src/index.ts"
-  },
-  "dependencies": {
-    "@hono/node-server": "^1.9.0",
-    "dotenv": "^16.4.5",
-    "hono": "^4.1.7",
-    "stripe": "^14.23.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.17",
-    "tsx": "^4.7.1"
-  }
+    "scripts": {
+        "dev": "tsx watch src/index.ts",
+        "test": "vitest --run"
+    },
+    "dependencies": {
+        "@hono/node-server": "^1.9.0",
+        "dotenv": "^16.4.5",
+        "hono": "^4.1.7",
+        "stripe": "^14.23.0"
+    },
+    "devDependencies": {
+        "@types/node": "^20.11.17",
+        "tsx": "^4.7.1",
+        "vitest": "^1.4.0"
+    }
 }
