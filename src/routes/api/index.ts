@@ -3,9 +3,6 @@ import apiService from "../../service/api"
 import { zValidator } from "@hono/zod-validator"
 import apiSchema from "../../validations/api"
 import { createJsonResponse } from "../../utils/helpers"
-import stripe from "../../stripe"
-import { STRIPE_WEBHOOK_SECRET } from "../../constants"
-import { HTTPException } from "hono/http-exception"
 
 const api = new Hono()
 
