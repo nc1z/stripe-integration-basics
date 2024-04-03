@@ -79,9 +79,6 @@ const apiService = () => {
         createStripeSession,
         constructEvent,
         handleWebhookEvent,
-        handleCheckoutSessionCompleted,
-        handleCustomerSubscriptionUpdated,
-        handleCustomerSubscriptionDeleted,
     }
 }
 
