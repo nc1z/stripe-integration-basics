@@ -3,6 +3,9 @@ import apiService from "../../service/api"
 import { zValidator } from "@hono/zod-validator"
 import apiSchema from "../../validations/api"
 import { createJsonResponse } from "../../utils/helpers"
+import stripe from "../../stripe"
+import { STRIPE_WEBHOOK_SECRET } from "../../constants"
+import { HTTPException } from "hono/http-exception"
 
 const api = new Hono()
 
@@ -19,6 +22,15 @@ api.get("/success", (c) => {
 
 api.get("/cancel", (c) => {
     return c.text("Cancelled!")
+})
+
+api.post("/webhook", async (c) => {
+    const rawBody = await c.req.text()
+    const signature = c.req.header("stripe-signature")
+    const { constructEvent, handleWebhookEvent } = apiService()
+    const event = constructEvent(rawBody, signature)
+    await handleWebhookEvent(event)
+    return c.text("success")
 })
 
 export default api
