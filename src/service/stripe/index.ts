@@ -3,7 +3,7 @@ import stripe from "../../stripe"
 import { HTTPException } from "hono/http-exception"
 import { HOST, PORT, STRIPE_WEBHOOK_SECRET } from "../../constants"
 
-const apiService = () => {
+const stripeService = () => {
     const createStripeSession = async ({
         price,
         quantity,
@@ -82,4 +82,4 @@ const apiService = () => {
     }
 }
 
-export default apiService
+export default stripeService

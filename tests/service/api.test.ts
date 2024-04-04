@@ -1,8 +1,8 @@
 import Stripe from "stripe"
-import apiService from "."
-import stripe from "../../stripe"
+import stripeService from "../../src/service/stripe"
+import stripe from "../../src/stripe"
 
-vi.mock("../../stripe", () => ({
+vi.mock("../../src/stripe", () => ({
     default: {
         webhooks: {
             constructEvent: vi.fn(),
@@ -10,14 +10,14 @@ vi.mock("../../stripe", () => ({
     },
 }))
 
-vi.mock("../../constants", async () => ({
+vi.mock("../../src/constants", async () => ({
     STRIPE_WEBHOOK_SECRET: "mockSecret",
 }))
 
-describe("apiService", () => {
+describe("stripeService", () => {
     describe("constructEvent", () => {
         test("Should construct event with rawbody, signature and env", () => {
-            const { constructEvent } = apiService()
+            const { constructEvent } = stripeService()
             constructEvent("123", "456")
             expect(stripe.webhooks.constructEvent).toBeCalledWith("123", "456", "mockSecret")
         })
@@ -26,9 +26,9 @@ describe("apiService", () => {
     // Work-in-progress
     describe.skip("handleWebhookEvent", () => {
         test("Should call respective functions based on event type", async () => {
-            const { handleWebhookEvent } = apiService()
+            const { handleWebhookEvent } = stripeService()
             // const handleCheckoutSessionCompletedSpy = vi
-            //     .spyOn(apiService(), "handleCheckoutSessionCompleted")
+            //     .spyOn(stripeService(), "handleCheckoutSessionCompleted")
             //     .mockImplementation(async () => console.log())
             await handleWebhookEvent({
                 data: { object: "" },

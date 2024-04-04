@@ -1,8 +1,8 @@
 import { Mock } from "vitest"
-import app from "../../index"
-import stripe from "../../stripe"
+import app from "../../src/index"
+import stripe from "../../src/stripe"
 
-vi.mock("../../stripe", () => ({
+vi.mock("../../src/stripe", () => ({
     default: {
         checkout: {
             sessions: {
