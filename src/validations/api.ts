@@ -1,6 +1,9 @@
-import { z } from "zod"
+import { ZodNumber, ZodObject, ZodString, z } from "zod"
 
-const apiSchema = z.object({
+const apiSchema: ZodObject<{
+    price: ZodString
+    quantity: ZodNumber
+}> = z.object({
     price: z.string().min(1),
     quantity: z.number().min(1),
 })

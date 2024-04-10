@@ -1,24 +1,30 @@
 import { Hono } from "hono"
 import stripeService from "../../service/stripe"
 import { zValidator } from "@hono/zod-validator"
+import { z } from "zod"
 import apiSchema from "../../validations/api"
-import { createJsonResponse } from "../../utils/helpers"
+import { validator } from "hono/validator"
+import { validate } from "../../middlewares/validate"
 
 const api = new Hono()
 
-api.post("/checkout", zValidator("json", apiSchema), async (c) => {
-    const { price, quantity } = c.req.valid("json")
-    const { createStripeSession } = stripeService()
-    const session = await createStripeSession({ price, quantity })
-    return c.json(createJsonResponse({ data: session }))
-})
+api.post(
+    "/checkout",
+    validator("json", (value) => validate(value, apiSchema)),
+    async (c) => {
+        const { price, quantity } = c.req.valid("json")
+        const { createStripeSession } = stripeService()
+        const session = await createStripeSession({ price, quantity })
+        return c.json(session)
+    }
+)
 
 api.get("/success", (c) => {
-    return c.text("Success!")
+    return c.json("Success!")
 })
 
 api.get("/cancel", (c) => {
-    return c.text("Cancelled!")
+    return c.json("Cancelled!")
 })
 
 api.post("/webhook", async (c) => {
@@ -27,7 +33,7 @@ api.post("/webhook", async (c) => {
     const { constructEvent, handleWebhookEvent } = stripeService()
     const event = constructEvent(rawBody, signature)
     await handleWebhookEvent(event)
-    return c.text("success")
+    return c.json("success")
 })
 
 export default api

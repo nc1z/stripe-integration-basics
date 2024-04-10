@@ -58,17 +58,9 @@ describe("Stripe", () => {
             })
             expect(res.status).toBe(400)
             expect(await res.json()).toEqual({
-                error: {
-                    issues: [
-                        expect.objectContaining({
-                            expected: "number",
-                            message: "Required",
-                            received: "undefined",
-                        }),
-                    ],
-                    name: "ZodError",
-                },
+                error: "quantity: Required",
                 success: false,
+                data: null,
             })
         })
 
@@ -83,34 +75,21 @@ describe("Stripe", () => {
             })
             expect(res.status).toBe(400)
             expect(await res.json()).toEqual({
-                error: {
-                    issues: [
-                        expect.objectContaining({
-                            expected: "string",
-                            message: "Expected string, received number",
-                            received: "number",
-                        }),
-                        expect.objectContaining({
-                            expected: "number",
-                            message: "Expected number, received string",
-                            received: "string",
-                        }),
-                    ],
-                    name: "ZodError",
-                },
+                error: "price: Expected string, received number",
                 success: false,
+                data: null,
             })
         })
     })
     test("GET /api/success", async () => {
         const res = await app.request("/api/success")
         expect(res.status).toBe(200)
-        expect(await res.text()).toBe("Success!")
+        expect(await res.json()).toStrictEqual({ success: true, data: "Success!", error: null })
     })
 
     test("GET /api/cancel", async () => {
         const res = await app.request("/api/cancel")
         expect(res.status).toBe(200)
-        expect(await res.text()).toBe("Cancelled!")
+        expect(await res.json()).toStrictEqual({ success: true, data: "Cancelled!", error: null })
     })
 })
