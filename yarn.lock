@@ -232,10 +232,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.20.2.tgz#9c907b21e30a52db959ba4f80bb01a0cc403d5cc"
   integrity sha512-N49X4lJX27+l9jbLKSqZ6bKNjzQvHaT8IIFUy+YIqmXQdjYCToGWwOItDrfby14c78aDd5NHQl29xingXfCdLQ==
 
-"@hono/node-server@^1.9.0":
-  version "1.9.1"
-  resolved "https://registry.yarnpkg.com/@hono/node-server/-/node-server-1.9.1.tgz#50da0704b1ba69fa5ba7c4772b3a20e8234afc21"
-  integrity sha512-XBru0xbtRlTZJyAiFJLn7XDKbCVXBaRhVQAQhB9TwND2gwj8jf9SDWIj/7VxVtNAjURJf7Ofcz58DRA6DPYiWA==
+"@hono/node-server@^1.10.1":
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@hono/node-server/-/node-server-1.10.1.tgz#a73c77c437656cc02ca90998d60dbdf57c2eccdb"
+  integrity sha512-5BKW25JH5PQKPDkTcIgv3yNUPtOAbnnjFFgWvIxxAY/B/ZNeYjjWoAeDmqhIiCgOAJ3Tauuw+0G+VainhuZRYQ==
 
 "@hono/zod-validator@^0.2.1":
   version "0.2.1"
